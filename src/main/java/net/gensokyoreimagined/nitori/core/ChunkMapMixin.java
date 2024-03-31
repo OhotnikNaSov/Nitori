@@ -33,6 +33,7 @@ public class ChunkMapMixin {
 
     @Inject(method = "<init>", at = @At("RETURN"))
     private void reassignEntityTrackers(CallbackInfo ci) {
-        this.entityMap = new Int2ObjectLinkedOpenHashMap<>();
+        // Use initial capacity for the map to avoid resizing
+        this.entityMap = new Int2ObjectLinkedOpenHashMap<>(16); // Assuming an initial capacity of 16
     }
 }
