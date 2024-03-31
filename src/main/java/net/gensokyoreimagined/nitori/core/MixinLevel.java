@@ -30,21 +30,20 @@ import java.util.List;
 
 @Mixin(Level.class)
 public class MixinLevel {
-
-    // Use HashedReferenceList instead of ArrayList for better performance
+    // Implementation of 0006-lithium-HashedReferenceList.patch
     @Mutable
     @Final @Shadow
-    private List<TickingBlockEntity> blockEntityTickers;
+    public List<TickingBlockEntity> blockEntityTickers;
 
-    // Use HashedReferenceList instead of ArrayList for better performance
+    // Implementation of 0006-lithium-HashedReferenceList.patch
     @Mutable
     @Final @Shadow
     private List<TickingBlockEntity> pendingBlockEntityTickers;
 
+    // Implementation of 0006-lithium-HashedReferenceList.patch
     @Inject(method = "<init>", at = @At("RETURN"))
     private void onInit(CallbackInfo ci) {
-        // Initialize blockEntityTickers and pendingBlockEntityTickers with an empty list
-        this.blockEntityTickers = new HashedReferenceList<>();
-        this.pendingBlockEntityTickers = new HashedReferenceList<>();
+        this.blockEntityTickers = new HashedReferenceList<>(Lists.newArrayList());
+        this.pendingBlockEntityTickers = new HashedReferenceList<>(Lists.newArrayList());
     }
 }
