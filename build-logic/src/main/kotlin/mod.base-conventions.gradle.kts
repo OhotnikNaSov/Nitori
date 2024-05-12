@@ -76,7 +76,7 @@ publishing {
         password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
       }
       // url to the releases maven repository
-      url = uri("https://repo.gensokyoreimagined.net/")
+      url = uri("https://github.com/OhotnikNaSov/Nitori/")
     }
   }
 }
